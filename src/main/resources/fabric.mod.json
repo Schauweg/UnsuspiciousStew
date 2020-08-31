@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "unsuspicious-stew",
+  "version": "${version}",
+  "name": "Unsuspicious Stew",
+  "description": "Displays the effects of a suspicious stew",
+  "authors": [
+    "Schauweg"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/unsuspicious-stew/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "schauweg.unsuspiciousstew.Main"
+    ]
+  },
+  "mixins": [
+    "unsuspicious-stew.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.8.0",
+    "fabric": "*",
+    "minecraft": "1.16.2"
+  }
+}
