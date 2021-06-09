@@ -4,8 +4,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -21,9 +21,9 @@ public class StewInfo {
     public static void onInjectTooltip(Object stackIn, List<Text> list) {
         ItemStack stack = (ItemStack) stackIn;
         if (stack != null && (stack.getItem() == Items.SUSPICIOUS_STEW)){
-            CompoundTag tag = stack.getTag();
+            NbtCompound tag = stack.getTag();
             if (tag != null) {
-                ListTag effects = tag.getList("Effects", 10);
+                NbtList effects = tag.getList("Effects", 10);
                 int effectsCount = effects.size();
 
                 for (int i = 0; i < effectsCount; i++) {

@@ -13,8 +13,8 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.text.*;
 import net.minecraft.util.ChatUtil;
 import net.minecraft.util.Formatting;
@@ -78,7 +78,7 @@ public abstract class MixinInGameHud {
             }
 
             if (opacity > 0) {
-                RenderSystem.pushMatrix();
+                matrixStack.push();
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
                 int var10001 = j - 2;
@@ -87,9 +87,9 @@ public abstract class MixinInGameHud {
                 this.getFontRenderer().getClass();
                 fill(matrixStack, var10001, var10002, var10003, hotbarOffset + 9 + 2, this.client.options.getTextBackgroundColor(0));
                 if (currentStack.getItem() == Items.SUSPICIOUS_STEW){
-                    CompoundTag tag = currentStack.getTag();
+                    NbtCompound tag = currentStack.getTag();
                     if (tag != null) {
-                        ListTag effects = tag.getList("Effects", 10);
+                        NbtList effects = tag.getList("Effects", 10);
                         int effectsCount = effects.size();
                         for (int i = 0; i < effectsCount; i++) {
                             tag = effects.getCompound(i);
@@ -103,7 +103,7 @@ public abstract class MixinInGameHud {
                     }
                 }
                 RenderSystem.disableBlend();
-                RenderSystem.popMatrix();
+                matrixStack.pop();
             }
         }
 
